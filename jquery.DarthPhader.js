@@ -27,12 +27,13 @@
             var slides = '#' + $(this).attr('id');
             var slide = slides + ' > li';
             var numSlides = $(slide).size();
-            var slidings = numSlides - 1;
-            var currentSlide = 0;
+            var currentSlide = 1;
 
             $(slide).animate({
                 opacity: 0
-            }, 10).eq(0).animate({
+            }, 10)
+
+            $(slide).eq(0).animate({
                 opacity: 1
             }, 10);
 
@@ -44,23 +45,23 @@
 
                 //what to do when the timer function is called
                 function autoSliding() {
-                    if (currentSlide == slidings) {
+                    if (currentSlide == numSlides) {
                         //we're at the beginning, rewind and reset
-                        currentSlide = 0;
+                        currentSlide = 1;
 
                         $('#' + settings.navNextId).removeClass('disabled');
                         $('#' + settings.navPrevId).addClass('disabled');
 
                         //do the phading
-                        $(slide).animate({
+                        $(slide).eq(0).animate({
+                            opacity: 1
+                        }, 10);
+
+                        $(slide).not(':first').animate({
                             opacity: 0
                         }, settings.animationDuration, settings.slideEasing);
 
-                        $(slide).eq(0).animate({
-                            opacity: 1
-                        }, settings.animationDuration, settings.slideEasing);
-
-                        $('#' + settings.navId + ' .' + settings.navNumClass).text('1 of ' + slidings);
+                        $('#' + settings.navId + ' .' + settings.navNumClass).text('1 of ' + numSlides);
                     }else {
                         if (settings.includeNav == true) {
                             //ensure we don't have any disabled buttons
@@ -68,11 +69,11 @@
                         }
 
                         //do the phading
-                        $(slide).eq(currentSlide).animate({
+                        $(slide).eq(currentSlide-1).animate({
                             opacity: 0
                         }, settings.animationDuration, settings.slideEasing);
 
-                        $(slide).eq(currentSlide+1).animate({
+                        $(slide).eq(currentSlide).animate({
                             opacity: 1
                         }, settings.animationDuration, settings.slideEasing);
 
@@ -81,11 +82,11 @@
 
                         //update nav counter
                         if (settings.navIncludeNumSlides == true && settings.includeNav == true) {
-                            $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + slidings);
+                            $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
                         }
 
                         //disable button if we've just reached the last slide
-                        if (currentSlide == slidings && settings.includeNav == true) {
+                        if (currentSlide == numSlides && settings.includeNav == true) {
                             $('#' + settings.navNextId).addClass('disabled');
                         }
                     }
@@ -99,7 +100,7 @@
                 var navHtml = '<span id="' + settings.navPrevId + '">&lt;</span>';
                 if (settings.navIncludeNumSlides == true) {
                     //do we want to know what slide we're on?
-                    var navHtml = navHtml + '<span class="' + settings.navNumClass + '">1 of ' + slidings + '</span>';
+                    var navHtml = navHtml + '<span class="' + settings.navNumClass + '">1 of ' + numSlides + '</span>';
                 }
                 var navHtml = navHtml + '<span id="' + settings.navNextId + '">&gt;</span>';
 
@@ -117,24 +118,28 @@
                     }
 
                     //prevent animation queueing
-                    if ($(slides).is(':animated') === true) {
+                    if ($(slide).is(':animated') === true) {
                         return;
                     }
 
-                    if (currentSlide == 0) {
+                    if (currentSlide == 1) {
                         //we're at the beginning, just disable the button
+                        if (settings.autoPhader == true) {
+                            autoSlideTimer = setInterval(autoSliding, settings.waitTime);
+                        }
+
                         return;
                     }else {
                         //ensure we don't have any disabled buttons
                         $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
 
                         //do the phading
-                        $(slide).eq(currentSlide).animate({
-                            opacity: 0
+                        $(slide).eq(currentSlide-2).animate({
+                            opacity: 1
                         }, settings.animationDuration, settings.slideEasing);
 
                         $(slide).eq(currentSlide-1).animate({
-                            opacity: 1
+                            opacity: 0
                         }, settings.animationDuration, settings.slideEasing);
 
                         //decrement counter
@@ -142,11 +147,11 @@
 
                         //update nav counter
                         if (settings.navIncludeNumSlides == true) {
-                            $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + slidings);
+                            $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
                         }
 
                         //disable button if we've just reached the first slide again
-                        if (currentSlide == 0) {
+                        if (currentSlide == 1) {
                             $('#' + settings.navPrevId).addClass('disabled');
                         }
                     }
@@ -161,27 +166,32 @@
 
                     //interrupt the timer for auto if it's going
                     if (settings.autoPhader == true) {
-                        clearTimeout(autoSlideTimer);
+                        clearInterval(autoSlideTimer);
                     }
 
                     //prevent animation queueing
-                    if ($(slides).is(':animated') === true) {
+                    if ($(slide).is(':animated') === true) {
                         return;
                     }
 
-                    if (currentSlide == slidings) {
+                    if (currentSlide == numSlides) {
                         //we're at the beginning, just disable the button
+
+                        if (settings.autoPhader == true) {
+                            autoSlideTimer = setInterval(autoSliding, settings.waitTime);
+                        }
+
                         return;
                     }else {
                         //ensure we don't have any disabled buttons
                         $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
 
                         //do the phading
-                        $(slide).eq(currentSlide).animate({
+                        $(slide).eq(currentSlide-1).animate({
                             opacity: 0
                         }, settings.animationDuration, settings.slideEasing);
 
-                        $(slide).eq(currentSlide+1).animate({
+                        $(slide).eq(currentSlide).animate({
                             opacity: 1
                         }, settings.animationDuration, settings.slideEasing);
 
@@ -190,11 +200,11 @@
 
                         //update nav counter
                         if (settings.navIncludeNumSlides == true) {
-                            $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + slidings);
+                            $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
                         }
 
                         //disable button if we've just reached the last slide
-                        if (currentSlide == slidings) {
+                        if (currentSlide == numSlides) {
                             $('#' + settings.navNextId).addClass('disabled');
                         }
                     }
