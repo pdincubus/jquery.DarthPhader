@@ -1,18 +1,18 @@
-# jquery.Shlider plugin
+# jquery.DarthPhader plugin
 
-Turns a ```<ul>``` into a very simple but sexy shlidey shlider that can slide one or more list items at once.
+Turns a ```<ul>``` into a very simple fading carousel.
 
-It's really tiny - just <del>4,400</del> 7,972 bytes uncompressed, <del>1,558</del> 2,238 bytes compressed! (And most of the 8KB uncompressed is space and comments!)
+Under 3KB compressed!
 
-There's a couple of demos to see it in action: [Basic, one slide at a time](http://pdincubus.github.com/jquery.Shlider/index.html), [Three slides at once](http://pdincubus.github.com/jquery.Shlider/multiple.html) or [Auto slider](http://pdincubus.github.com/jquery.Shlider/auto.html)
+[Demo with auto fading enabled](http://pdincubus.github.com/jquery.DarthPhader/phade.html)
 
 ## Basic example
 
 ### HTML
 
 ```html
-<div id="shliderContainer">
-    <ul class="cf" id="shlider">
+<div id="phaderContainer">
+    <ul class="cf" id="phader">
         <li>
             <!--content of slide-->
         </li>
@@ -24,66 +24,71 @@ There's a couple of demos to see it in action: [Basic, one slide at a time](http
         </li>
     </ul>
     <!--this is for the nav next/prev/counter-->
-    <div id="shliderNav"></div>
+    <div id="phaderNav"></div>
 </div>
 ```
 
 ### CSS
 
-I use the clearfix from [HTML5 Boilerplate](http://www.html5boilerplate.com) to clear the floated ```<li>``` elements.
-
 Here's a basic idea of some CSS that will get you on your way:
 
 ```css
-#shliderContainer {
-    width: width of your slides;
-    height: height of your slides;
+#phaderContainer {
+    width: 500px;
+    height: 330px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
 }
 
-#shliderNav {
+#phaderNav {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: 0px;
+    right: 0px;
     z-index: 1000;
     font-size: 18px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: #fff;
+    padding: 4px;
 }
 
-#shliderNav span.shlidePrev, #shliderNav span.shlideNext {
+#phaderNav span.phadePrev, #phadeNav span.phadeNext {
     cursor: pointer;
     padding: 2px 5px;
     display: inline-block;
 }
 
-#shliderNav span.disabled {
+#phaderNav span.disabled {
     color: #ccc;
 }
 
-#shliderNav span.shlideNum {
+#phaderNav span.phadeNav {
     margin: 2px 10px;
     display: inline-block;
 }
 
-ul#shlider {
+ul#phader {
     list-style: none;
     margin: 0;
     padding: 0;
+    width: 500px;
+    height: 330px;
+}
+
+ul#phader li {
     position: absolute;
     top: 0;
     left: 0;
-    width: width of all your slides combined;
-    height: height of your slide;
+    margin: 0;
 }
 
-ul#shlider li {
-    display: block;
-    float: left;
-    width: width of your slide;
-    height: height of your slide;
-    margin: 0;
-    position: relative;
+ul#phader li img {
+    max-width: 100%;
 }
 ```
 
@@ -94,7 +99,7 @@ Make sure you have called jQuery, pulled in the shlider js file (and easing if y
 ```html
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="http://cachedcommons.org/cache/jquery-easing/1.3.0/javascripts/jquery-easing-min.js"></script>
-<script type="text/javascript" src="/path/to/js/jquery.Shlider.js"></script>
+<script type="text/javascript" src="/path/to/js/jquery.DarthPhader.js"></script>
 ```
 
 Call shlider to run on the ```<ul>``` inside your ```<div>``` container. Ensure you have set an ID on it! This can be on ```$(document).ready()``` if you prefer. I use ```$(window).load``` so that I know all images, etc have finished loading before anything happens.
@@ -103,21 +108,22 @@ Here are all the possible settings, and their defaults
 
 ```javascript
 $(window).load(function() {
-    $('#shlider').shlider({
-        'animationDuration'     : 500,          //milliseconds
-        'slideEasing'           : 'swing',      //default options are swing or linear
-        'includeNav'            : true,         //do you want to output next/prev buttons?
-        'navId'                 : 'shliderNav', //create a blank div with an id
-        'navIncludeNumSlides'   : false,        //left and right nav plus number of slides shown
-        'navNextId'             : 'shlideNext', //pick an ID
-        'navPrevId'             : 'shlidePrev', //see above
-        'navNumClass'           : 'shlideNum',  //pick a class
-        'slidesAtOnce'          : 1,            //do you want more than one slide to move at once?
-        'autoSlide'             : false,        //wait for use interaction?
-        'waitTime'              : 3000          //how long between auto slides?
+    $('#phader').shlider({
+        'animationDuration' : 1000,     //milliseconds
+        'slideEasing' : 'swing',        //default options are swing or linear
+        'includeNav' : true,            //do you want to output next/prev buttons?
+        'navId' : 'phaderNav',          //create a blank div with an id
+        'navIncludeNumSlides' : true,   //left and right nav plus number of slides shown
+        'navNextId' : 'phadeNext',      //pick an ID
+        'navPrevId' : 'phadePrev',      //see above
+        'navNumClass' : 'phadeNum',     //pick a class
+        'autoPhader' : false,           //wait for user interaction?
+        'waitTime' : 4000               //how long between auto phading?
     });
 });
 ```
+
+Yeah, that's right. Even though it only fades in and out I left the option in for easing. Any why not? Exactly. Doesn't matter if it's a bit useless here, you can do some flickery smooshy lovely fades with it.
 
 ## Browsers
 
