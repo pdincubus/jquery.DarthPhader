@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery.darthphader by pdincubus</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jquery.darthphader</h1>
+        <p>A very simple fading carousel</p>
+
+        <p class="view"><a href="https://github.com/pdincubus/jquery.DarthPhader">View the Project on GitHub <small>pdincubus/jquery.DarthPhader</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/pdincubus/jquery.DarthPhader/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/pdincubus/jquery.DarthPhader/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/pdincubus/jquery.DarthPhader">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>jquery.DarthPhader plugin</h1>
+
+<p>Turns a <code>&lt;ul&gt;</code> into a very simple fading carousel.</p>
+
+<p>Under 3KB compressed!</p>
+
+<p><a href="http://pdincubus.github.com/jquery.DarthPhader/phade.html">Demo with auto fading enabled</a></p>
+
+<h2>Basic example</h2>
+
+<h3>HTML</h3>
+
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"phaderContainer"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"cf"</span> <span class="na">id=</span><span class="s">"phader"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>
+            <span class="c">&lt;!--content of slide--&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>
+            <span class="c">&lt;!--content of slide--&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>
+            <span class="c">&lt;!--content of slide--&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+    <span class="c">&lt;!--this is for the nav next/prev/counter--&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"phaderNav"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+
+<h3>CSS</h3>
+
+<p>Here's a basic idea of some CSS that will get you on your way:</p>
+
+<div class="highlight"><pre><span class="nf">#phaderContainer</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">500px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">330px</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span> <span class="k">auto</span><span class="p">;</span>
+    <span class="k">overflow</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span>
+    <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">#phaderNav</span> <span class="p">{</span>
+    <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
+    <span class="k">bottom</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">right</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="k">z-index</span><span class="o">:</span> <span class="m">1000</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">18px</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">touch</span><span class="o">-</span><span class="n">callout</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">khtml</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="n">user</span><span class="o">-</span><span class="n">select</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">:</span> <span class="m">#fff</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">4px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">#phaderNav</span> <span class="nt">span</span><span class="nc">.phadePrev</span><span class="o">,</span> <span class="nf">#phadeNav</span> <span class="nt">span</span><span class="nc">.phadeNext</span> <span class="p">{</span>
+    <span class="k">cursor</span><span class="o">:</span> <span class="k">pointer</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">2px</span> <span class="m">5px</span><span class="p">;</span>
+    <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">#phaderNav</span> <span class="nt">span</span><span class="nc">.disabled</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="m">#ccc</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">#phaderNav</span> <span class="nt">span</span><span class="nc">.phadeNav</span> <span class="p">{</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">2px</span> <span class="m">10px</span><span class="p">;</span>
+    <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">ul</span><span class="nf">#phader</span> <span class="p">{</span>
+    <span class="k">list-style</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">500px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">330px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">ul</span><span class="nf">#phader</span> <span class="nt">li</span> <span class="p">{</span>
+    <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
+    <span class="k">top</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">left</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">ul</span><span class="nf">#phader</span> <span class="nt">li</span> <span class="nt">img</span> <span class="p">{</span>
+    <span class="k">max-width</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>jQuery</h3>
+
+<p>Make sure you have called jQuery, pulled in the shlider js file (and easing if you want those effects too) before you try to run Shlider:</p>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://cachedcommons.org/cache/jquery-easing/1.3.0/javascripts/jquery-easing-min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"/path/to/js/jquery.DarthPhader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<p>Call shlider to run on the <code>&lt;ul&gt;</code> inside your <code>&lt;div&gt;</code> container. Ensure you have set an ID on it! This can be on <code>$(document).ready()</code> if you prefer. I use <code>$(window).load</code> so that I know all images, etc have finished loading before anything happens.</p>
+
+<p>Here are all the possible settings, and their defaults</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#phader'</span><span class="p">).</span><span class="nx">shlider</span><span class="p">({</span>
+        <span class="s1">'animationDuration'</span> <span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>     <span class="c1">//milliseconds</span>
+        <span class="s1">'slideEasing'</span> <span class="o">:</span> <span class="s1">'swing'</span><span class="p">,</span>        <span class="c1">//default options are swing or linear</span>
+        <span class="s1">'includeNav'</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>            <span class="c1">//do you want to output next/prev buttons?</span>
+        <span class="s1">'navId'</span> <span class="o">:</span> <span class="s1">'phaderNav'</span><span class="p">,</span>          <span class="c1">//create a blank div with an id</span>
+        <span class="s1">'navIncludeNumSlides'</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>   <span class="c1">//left and right nav plus number of slides shown</span>
+        <span class="s1">'navNextId'</span> <span class="o">:</span> <span class="s1">'phadeNext'</span><span class="p">,</span>      <span class="c1">//pick an ID</span>
+        <span class="s1">'navPrevId'</span> <span class="o">:</span> <span class="s1">'phadePrev'</span><span class="p">,</span>      <span class="c1">//see above</span>
+        <span class="s1">'navNumClass'</span> <span class="o">:</span> <span class="s1">'phadeNum'</span><span class="p">,</span>     <span class="c1">//pick a class</span>
+        <span class="s1">'autoPhader'</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>           <span class="c1">//wait for user interaction?</span>
+        <span class="s1">'waitTime'</span> <span class="o">:</span> <span class="mi">4000</span>               <span class="c1">//how long between auto phading?</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>Yeah, that's right. Even though it only fades in and out I left the option in for easing. Any why not? Exactly. Doesn't matter if it's a bit useless here, you can do some flickery smooshy lovely fades with it.</p>
+
+<h2>Browsers</h2>
+
+<p>It's pretty simple as a plugin so should work on any graphical browser with javascript enabled. I've tested in Firefox and Chrome. So likely it will work in Opera, Safari, IE10, IE9, IE8, and maybe IE7 &amp; IE6 at a push. Maybe.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/pdincubus">pdincubus</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
