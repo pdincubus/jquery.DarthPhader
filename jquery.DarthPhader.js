@@ -40,9 +40,6 @@
 
             if (settings.autoPhader == true) {
 
-                //set auto slide timer
-                var autoSlideTimer = setInterval(autoSliding, settings.waitTime);
-
                 //what to do when the timer function is called
                 function autoSliding() {
                     if (currentSlide == numSlides) {
@@ -91,6 +88,9 @@
                         }
                     }
                 }
+
+                //set auto slide timer
+                var autoSlideTimer = setInterval(autoSliding, settings.waitTime);
             }//end autoSlide
 
 
