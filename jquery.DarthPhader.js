@@ -95,71 +95,73 @@
 
 
             if (settings.includeNav == true) {
-
-                //create left and right nav
-                var navHtml = '<span id="' + settings.navPrevId + '">&lt;</span>';
-                if (settings.navIncludeNumSlides == true) {
-                    //do we want to know what slide we're on?
-                    var navHtml = navHtml + '<span class="' + settings.navNumClass + '">1 of ' + numSlides + '</span>';
-                }
-                var navHtml = navHtml + '<span id="' + settings.navNextId + '">&gt;</span>';
-
-                //add the nav to the nav element
-                $('#' + settings.navId).append(navHtml);
-                //diable previous to start with, I mean we're already at the beginning.
-                $('#' + settings.navPrevId).addClass('disabled');
-
-                //what happens when we click previous?
-                $('#' + settings.navPrevId).on('click', function() {
-
-                    //interrupt the timer for auto if it's going
-                    if (settings.autoPhader == true) {
-                        clearInterval(autoSlideTimer);
+                //we only need to add it if it doesn't exist
+                if(!$('#' + settings.navPrevId).length) {
+                    //create left and right nav
+                    var navHtml = '<span id="' + settings.navPrevId + '">&lt;</span>';
+                    if (settings.navIncludeNumSlides == true) {
+                        //do we want to know what slide we're on?
+                        var navHtml = navHtml + '<span class="' + settings.navNumClass + '">1 of ' + numSlides + '</span>';
                     }
+                    var navHtml = navHtml + '<span id="' + settings.navNextId + '">&gt;</span>';
 
-                    //prevent animation queueing
-                    if ($(slide).is(':animated') === true) {
-                        return;
-                    }
+                    //add the nav to the nav element
+                    $('#' + settings.navId).append(navHtml);
+                    //diable previous to start with, I mean we're already at the beginning.
+                    $('#' + settings.navPrevId).addClass('disabled');
 
-                    if (currentSlide == 1) {
-                        //we're at the beginning, just disable the button
+                    //what happens when we click previous?
+                    $('#' + settings.navPrevId).on('click', function() {
+
+                        //interrupt the timer for auto if it's going
+                        if (settings.autoPhader == true) {
+                            clearInterval(autoSlideTimer);
+                        }
+
+                        //prevent animation queueing
+                        if ($(slide).is(':animated') === true) {
+                            return;
+                        }
+
+                        if (currentSlide == 1) {
+                            //we're at the beginning, just disable the button
+                            if (settings.autoPhader == true) {
+                                autoSlideTimer = setInterval(autoSliding, settings.waitTime);
+                            }
+
+                            return;
+                        }else {
+                            //ensure we don't have any disabled buttons
+                            $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
+
+                            //do the phading
+                            $(slide).eq(currentSlide-2).animate({
+                                opacity: 1
+                            }, settings.animationDuration, settings.slideEasing);
+
+                            $(slide).eq(currentSlide-1).animate({
+                                opacity: 0
+                            }, settings.animationDuration, settings.slideEasing);
+
+                            //decrement counter
+                            currentSlide--;
+
+                            //update nav counter
+                            if (settings.navIncludeNumSlides == true) {
+                                $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
+                            }
+
+                            //disable button if we've just reached the first slide again
+                            if (currentSlide == 1) {
+                                $('#' + settings.navPrevId).addClass('disabled');
+                            }
+                        }
+
                         if (settings.autoPhader == true) {
                             autoSlideTimer = setInterval(autoSliding, settings.waitTime);
                         }
-
-                        return;
-                    }else {
-                        //ensure we don't have any disabled buttons
-                        $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
-
-                        //do the phading
-                        $(slide).eq(currentSlide-2).animate({
-                            opacity: 1
-                        }, settings.animationDuration, settings.slideEasing);
-
-                        $(slide).eq(currentSlide-1).animate({
-                            opacity: 0
-                        }, settings.animationDuration, settings.slideEasing);
-
-                        //decrement counter
-                        currentSlide--;
-
-                        //update nav counter
-                        if (settings.navIncludeNumSlides == true) {
-                            $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
-                        }
-
-                        //disable button if we've just reached the first slide again
-                        if (currentSlide == 1) {
-                            $('#' + settings.navPrevId).addClass('disabled');
-                        }
-                    }
-
-                    if (settings.autoPhader == true) {
-                        autoSlideTimer = setInterval(autoSliding, settings.waitTime);
-                    }
-                });
+                    });
+                }
 
                 //what happens when we click next?
                 $('#' + settings.navNextId).on('click', function() {
