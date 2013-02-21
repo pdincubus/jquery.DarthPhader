@@ -31,14 +31,14 @@
 
             $(slide).animate({
                 opacity: 0
-            }, 10)
+            }, 10);
 
             $(slide).eq(0).animate({
                 opacity: 1
             }, 10);
 
 
-            if (settings.autoPhader == true) {
+            if (settings.autoPhader === true) {
 
                 //what to do when the timer function is called
                 function autoSliding() {
@@ -60,7 +60,7 @@
 
                         $('#' + settings.navId + ' .' + settings.navNumClass).text('1 of ' + numSlides);
                     }else {
-                        if (settings.includeNav == true) {
+                        if (settings.includeNav === true) {
                             //ensure we don't have any disabled buttons
                             $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
                         }
@@ -78,12 +78,12 @@
                         currentSlide++;
 
                         //update nav counter
-                        if (settings.navIncludeNumSlides == true && settings.includeNav == true) {
+                        if (settings.navIncludeNumSlides === true && settings.includeNav === true) {
                             $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
                         }
 
                         //disable button if we've just reached the last slide
-                        if (currentSlide == numSlides && settings.includeNav == true) {
+                        if (currentSlide == numSlides && settings.includeNav === true) {
                             $('#' + settings.navNextId).addClass('disabled');
                         }
                     }
@@ -94,16 +94,16 @@
             }//end autoSlide
 
 
-            if (settings.includeNav == true) {
+            if (settings.includeNav === true) {
                 //we only need to add it if it doesn't exist
                 if(!$('#' + settings.navPrevId).length) {
                     //create left and right nav
                     var navHtml = '<span id="' + settings.navPrevId + '">&lt;</span>';
-                    if (settings.navIncludeNumSlides == true) {
+                    if (settings.navIncludeNumSlides === true) {
                         //do we want to know what slide we're on?
-                        var navHtml = navHtml + '<span class="' + settings.navNumClass + '">1 of ' + numSlides + '</span>';
+                        navHtml = navHtml + '<span class="' + settings.navNumClass + '">1 of ' + numSlides + '</span>';
                     }
-                    var navHtml = navHtml + '<span id="' + settings.navNextId + '">&gt;</span>';
+                    navHtml = navHtml + '<span id="' + settings.navNextId + '">&gt;</span>';
 
                     //add the nav to the nav element
                     $('#' + settings.navId).append(navHtml);
@@ -114,7 +114,7 @@
                     $('#' + settings.navPrevId).on('click', function() {
 
                         //interrupt the timer for auto if it's going
-                        if (settings.autoPhader == true) {
+                        if (settings.autoPhader === true) {
                             clearInterval(autoSlideTimer);
                         }
 
@@ -125,7 +125,7 @@
 
                         if (currentSlide == 1) {
                             //we're at the beginning, just disable the button
-                            if (settings.autoPhader == true) {
+                            if (settings.autoPhader === true) {
                                 autoSlideTimer = setInterval(autoSliding, settings.waitTime);
                             }
 
@@ -147,7 +147,7 @@
                             currentSlide--;
 
                             //update nav counter
-                            if (settings.navIncludeNumSlides == true) {
+                            if (settings.navIncludeNumSlides === true) {
                                 $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
                             }
 
@@ -157,7 +157,7 @@
                             }
                         }
 
-                        if (settings.autoPhader == true) {
+                        if (settings.autoPhader === true) {
                             autoSlideTimer = setInterval(autoSliding, settings.waitTime);
                         }
                     });
@@ -167,7 +167,7 @@
                 $('#' + settings.navNextId).on('click', function() {
 
                     //interrupt the timer for auto if it's going
-                    if (settings.autoPhader == true) {
+                    if (settings.autoPhader === true) {
                         clearInterval(autoSlideTimer);
                     }
 
@@ -179,7 +179,7 @@
                     if (currentSlide == numSlides) {
                         //we're at the beginning, just disable the button
 
-                        if (settings.autoPhader == true) {
+                        if (settings.autoPhader === true) {
                             autoSlideTimer = setInterval(autoSliding, settings.waitTime);
                         }
 
@@ -201,7 +201,7 @@
                         currentSlide++;
 
                         //update nav counter
-                        if (settings.navIncludeNumSlides == true) {
+                        if (settings.navIncludeNumSlides === true) {
                             $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
                         }
 
@@ -211,7 +211,7 @@
                         }
                     }
 
-                    if (settings.autoPhader == true) {
+                    if (settings.autoPhader === true) {
                         autoSlideTimer = setInterval(autoSliding, settings.waitTime);
                     }
                 });
