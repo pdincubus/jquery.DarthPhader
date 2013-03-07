@@ -128,3 +128,7 @@ Yeah, that's right. Even though it only fades in and out I left the option in fo
 ## Browsers
 
 It's pretty simple as a plugin so should work on any graphical browser with javascript enabled. I've tested in Firefox and Chrome. So likely it will work in Opera, Safari, IE10, IE9, IE8, and maybe IE7 & IE6 at a push. Maybe.
+
+## Photos
+
+My dad takes nice photos. He let me use them because he's nice. [You should go and look at them](http://www.flickr.com/photos/dsnine). All rights reserved and all that kind of stuff, yeah?
