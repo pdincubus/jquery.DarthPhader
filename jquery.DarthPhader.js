@@ -37,58 +37,57 @@
                 opacity: 1
             }, 10);
 
+            //what to do when the timer function is called
+            function autoSliding() {
+                if (currentSlide === numSlides) {
+                    //we're at the beginning, rewind and reset
+                    currentSlide = 1;
 
-            if (settings.autoPhader === true) {
+                    $('#' + settings.navNextId).removeClass('disabled');
+                    $('#' + settings.navPrevId).addClass('disabled');
 
-                //what to do when the timer function is called
-                function autoSliding() {
-                    if (currentSlide == numSlides) {
-                        //we're at the beginning, rewind and reset
-                        currentSlide = 1;
+                    //do the phading
+                    $(slide).eq(0).animate({
+                        opacity: 1
+                    }, 10);
 
-                        $('#' + settings.navNextId).removeClass('disabled');
-                        $('#' + settings.navPrevId).addClass('disabled');
+                    $(slide).not(':first').animate({
+                        opacity: 0
+                    }, settings.animationDuration, settings.slideEasing);
 
-                        //do the phading
-                        $(slide).eq(0).animate({
-                            opacity: 1
-                        }, 10);
+                    $('#' + settings.navId + ' .' + settings.navNumClass).text('1 of ' + numSlides);
+                }else {
+                    if (settings.includeNav === true) {
+                        //ensure we don't have any disabled buttons
+                        $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
+                    }
 
-                        $(slide).not(':first').animate({
-                            opacity: 0
-                        }, settings.animationDuration, settings.slideEasing);
+                    //do the phading
+                    $(slide).eq(currentSlide-1).animate({
+                        opacity: 0
+                    }, settings.animationDuration, settings.slideEasing);
 
-                        $('#' + settings.navId + ' .' + settings.navNumClass).text('1 of ' + numSlides);
-                    }else {
-                        if (settings.includeNav === true) {
-                            //ensure we don't have any disabled buttons
-                            $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
-                        }
+                    $(slide).eq(currentSlide).animate({
+                        opacity: 1
+                    }, settings.animationDuration, settings.slideEasing);
 
-                        //do the phading
-                        $(slide).eq(currentSlide-1).animate({
-                            opacity: 0
-                        }, settings.animationDuration, settings.slideEasing);
+                    //increment the counter
+                    currentSlide++;
 
-                        $(slide).eq(currentSlide).animate({
-                            opacity: 1
-                        }, settings.animationDuration, settings.slideEasing);
+                    //update nav counter
+                    if (settings.navIncludeNumSlides === true && settings.includeNav === true) {
+                        $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
+                    }
 
-                        //increment the counter
-                        currentSlide++;
-
-                        //update nav counter
-                        if (settings.navIncludeNumSlides === true && settings.includeNav === true) {
-                            $('#' + settings.navId + ' .' + settings.navNumClass).text(currentSlide + ' of ' + numSlides);
-                        }
-
-                        //disable button if we've just reached the last slide
-                        if (currentSlide == numSlides && settings.includeNav === true) {
-                            $('#' + settings.navNextId).addClass('disabled');
-                        }
+                    //disable button if we've just reached the last slide
+                    if (currentSlide === numSlides && settings.includeNav === true) {
+                        $('#' + settings.navNextId).addClass('disabled');
                     }
                 }
+            }
 
+
+            if (settings.autoPhader === true) {
                 //set auto slide timer
                 var autoSlideTimer = setInterval(autoSliding, settings.waitTime);
             }//end autoSlide
@@ -123,7 +122,7 @@
                             return;
                         }
 
-                        if (currentSlide == 1) {
+                        if (currentSlide === 1) {
                             //we're at the beginning, just disable the button
                             if (settings.autoPhader === true) {
                                 autoSlideTimer = setInterval(autoSliding, settings.waitTime);
@@ -152,7 +151,7 @@
                             }
 
                             //disable button if we've just reached the first slide again
-                            if (currentSlide == 1) {
+                            if (currentSlide === 1) {
                                 $('#' + settings.navPrevId).addClass('disabled');
                             }
                         }
@@ -176,7 +175,7 @@
                         return;
                     }
 
-                    if (currentSlide == numSlides) {
+                    if (currentSlide === numSlides) {
                         //we're at the beginning, just disable the button
 
                         if (settings.autoPhader === true) {
@@ -206,7 +205,7 @@
                         }
 
                         //disable button if we've just reached the last slide
-                        if (currentSlide == numSlides) {
+                        if (currentSlide === numSlides) {
                             $('#' + settings.navNextId).addClass('disabled');
                         }
                     }
