@@ -19,7 +19,8 @@
             'navPrevId' : 'phadePrev',      //see above
             'navNumClass' : 'phadeNum',     //pick a class
             'autoPhader' : false,           //wait for user interaction?
-            'waitTime' : 4000               //how long between auto phading?
+            'waitTime' : 4000,               //how long between auto phading?
+            'opacity' : 0                   //fadeOut or just opacity hide? Default - fadeOut
         }, options);
 
         return this.each(function() {
@@ -29,13 +30,18 @@
             var numSlides = $(slide).size();
             var currentSlide = 1;
 
-            $(slide).animate({
-                opacity: 0
-            }, 10);
+            if(settings.opacity == 1) {
+                $(slide).animate({
+                    opacity: 0
+                }, 10);
 
-            $(slide).eq(0).animate({
-                opacity: 1
-            }, 10);
+                $(slide).eq(0).animate({
+                    opacity: 1
+                }, 10);
+            } else {
+                $(slide).hide();
+                $(slide).eq(0).show();
+            }
 
             //what to do when the timer function is called
             function autoSliding() {
@@ -47,13 +53,18 @@
                     $('#' + settings.navPrevId).addClass('disabled');
 
                     //do the phading
-                    $(slide).eq(0).animate({
-                        opacity: 1
-                    }, 10);
+                    if(settings.opacity == 1) {
+                        $(slide).eq(0).animate({
+                            opacity: 1
+                        }, 10);
 
-                    $(slide).not(':first').animate({
-                        opacity: 0
-                    }, settings.animationDuration, settings.slideEasing);
+                         $(slide).not(':first').animate({
+                            opacity: 0
+                        }, settings.animationDuration, settings.slideEasing);
+                    } else {
+                        $(slide).eq(0).show();
+                        $(slide).not(':first').fadeOut(settings.animationDuration);
+                    }
 
                     $('#' + settings.navId + ' .' + settings.navNumClass).text('1 of ' + numSlides);
                 }else {
@@ -63,13 +74,18 @@
                     }
 
                     //do the phading
-                    $(slide).eq(currentSlide-1).animate({
-                        opacity: 0
-                    }, settings.animationDuration, settings.slideEasing);
+                    if(settings.opacity == 1) {
+                        $(slide).eq(currentSlide-1).animate({
+                            opacity: 0
+                        }, settings.animationDuration, settings.slideEasing);
 
-                    $(slide).eq(currentSlide).animate({
-                        opacity: 1
-                    }, settings.animationDuration, settings.slideEasing);
+                        $(slide).eq(currentSlide).animate({
+                            opacity: 1
+                        }, settings.animationDuration, settings.slideEasing);
+                    } else {
+                        $(slide).eq(currentSlide-1).fadeOut(settings.animationDuration);
+                        $(slide).eq(currentSlide).fadeIn(settings.animationDuration);
+                    }
 
                     //increment the counter
                     currentSlide++;
@@ -85,7 +101,6 @@
                     }
                 }
             }
-
 
             if (settings.autoPhader === true) {
                 //set auto slide timer
@@ -134,13 +149,18 @@
                             $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
 
                             //do the phading
-                            $(slide).eq(currentSlide-2).animate({
-                                opacity: 1
-                            }, settings.animationDuration, settings.slideEasing);
+                            if(settings.opacity == 1) {
+                                $(slide).eq(currentSlide-2).animate({
+                                    opacity: 1
+                                }, settings.animationDuration, settings.slideEasing);
 
-                            $(slide).eq(currentSlide-1).animate({
-                                opacity: 0
-                            }, settings.animationDuration, settings.slideEasing);
+                                $(slide).eq(currentSlide-1).animate({
+                                    opacity: 0
+                                }, settings.animationDuration, settings.slideEasing);
+                            } else {
+                                $(slide).eq(currentSlide-2).fadeIn(settings.animationDuration);
+                                $(slide).eq(currentSlide-1).fadeOut(settings.animationDuration);
+                            }
 
                             //decrement counter
                             currentSlide--;
@@ -188,13 +208,18 @@
                         $('#' + settings.navNextId + ', #' + settings.navPrevId).removeClass('disabled');
 
                         //do the phading
-                        $(slide).eq(currentSlide-1).animate({
-                            opacity: 0
-                        }, settings.animationDuration, settings.slideEasing);
+                        if(settings.opacity == 1) {
+                            $(slide).eq(currentSlide-1).animate({
+                                opacity: 0
+                            }, settings.animationDuration, settings.slideEasing);
 
-                        $(slide).eq(currentSlide).animate({
-                            opacity: 1
-                        }, settings.animationDuration, settings.slideEasing);
+                            $(slide).eq(currentSlide).animate({
+                                opacity: 1
+                            }, settings.animationDuration, settings.slideEasing);
+                        } else {
+                            $(slide).eq(currentSlide-1).fadeOut(settings.animationDuration);
+                            $(slide).eq(currentSlide).fadeIn(settings.animationDuration);
+                        }
 
                         //increment the counter
                         currentSlide++;
