@@ -7,10 +7,9 @@
 
 (function($) {
     $.fn.darthPhader = function(options) {
-
         // settings
         var settings = $.extend({
-            'animationDuration' : 1000,     //milliseconds
+            'animationDuration' : 2000,     //milliseconds
             'slideEasing' : 'swing',        //default options are swing or linear
             'includeNav' : true,            //do you want to output next/prev buttons?
             'navId' : 'phaderNav',          //create a blank div with an id
@@ -19,7 +18,7 @@
             'navPrevId' : 'phadePrev',      //see above
             'navNumClass' : 'phadeNum',     //pick a class
             'autoPhader' : false,           //wait for user interaction?
-            'waitTime' : 4000,               //how long between auto phading?
+            'waitTime' : 5000,               //how long between auto phading?
             'opacity' : 0                   //fadeOut or just opacity hide? Default - fadeOut
         }, options);
 
