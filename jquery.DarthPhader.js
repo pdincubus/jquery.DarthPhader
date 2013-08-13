@@ -60,10 +60,10 @@
 
                          $(slide).not(':first').animate({
                             opacity: 0
-                        }, settings.animationDuration, settings.slideEasing);
+                        }, parseInt(settings.animationDuration,10), settings.slideEasing);
                     } else {
                         $(slide).eq(0).show();
-                        $(slide).not(':first').fadeOut(settings.animationDuration);
+                        $(slide).not(':first').fadeOut(parseInt(settings.animationDuration,10));
                     }
 
                     $('#' + settings.navId + ' .' + settings.navNumClass).text('1 of ' + numSlides);
@@ -77,14 +77,14 @@
                     if(settings.opacity == 1) {
                         $(slide).eq(currentSlide-1).animate({
                             opacity: 0
-                        }, settings.animationDuration, settings.slideEasing);
+                        }, parseInt(settings.animationDuration,10), settings.slideEasing);
 
                         $(slide).eq(currentSlide).animate({
                             opacity: 1
-                        }, settings.animationDuration, settings.slideEasing);
+                        }, parseInt(settings.animationDuration,10), settings.slideEasing);
                     } else {
-                        $(slide).eq(currentSlide-1).fadeOut(settings.animationDuration);
-                        $(slide).eq(currentSlide).fadeIn(settings.animationDuration);
+                        $(slide).eq(currentSlide-1).fadeOut(parseInt(settings.animationDuration,10));
+                        $(slide).eq(currentSlide).fadeIn(parseInt(settings.animationDuration,10));
                     }
 
                     //increment the counter
@@ -104,7 +104,7 @@
 
             if (settings.autoPhader === true) {
                 //set auto slide timer
-                var autoSlideTimer = setInterval(autoSliding, settings.waitTime);
+                var autoSlideTimer = setInterval(autoSliding, parseInt(settings.waitTime,10));
             }//end autoSlide
 
 
@@ -140,7 +140,7 @@
                         if (currentSlide === 1) {
                             //we're at the beginning, just disable the button
                             if (settings.autoPhader === true) {
-                                autoSlideTimer = setInterval(autoSliding, settings.waitTime);
+                                autoSlideTimer = setInterval(autoSliding, parseInt(settings.waitTime,10));
                             }
 
                             return;
@@ -152,14 +152,14 @@
                             if(settings.opacity == 1) {
                                 $(slide).eq(currentSlide-2).animate({
                                     opacity: 1
-                                }, settings.animationDuration, settings.slideEasing);
+                                }, parseInt(settings.animationDuration,10), settings.slideEasing);
 
                                 $(slide).eq(currentSlide-1).animate({
                                     opacity: 0
-                                }, settings.animationDuration, settings.slideEasing);
+                                }, parseInt(settings.animationDuration,10), settings.slideEasing);
                             } else {
-                                $(slide).eq(currentSlide-2).fadeIn(settings.animationDuration);
-                                $(slide).eq(currentSlide-1).fadeOut(settings.animationDuration);
+                                $(slide).eq(currentSlide-2).fadeIn(parseInt(settings.animationDuration,10));
+                                $(slide).eq(currentSlide-1).fadeOut(parseInt(settings.animationDuration,10));
                             }
 
                             //decrement counter
@@ -177,7 +177,7 @@
                         }
 
                         if (settings.autoPhader === true) {
-                            autoSlideTimer = setInterval(autoSliding, settings.waitTime);
+                            autoSlideTimer = setInterval(autoSliding, parseInt(settings.waitTime,10));
                         }
                     });
                 }
@@ -199,7 +199,7 @@
                         //we're at the beginning, just disable the button
 
                         if (settings.autoPhader === true) {
-                            autoSlideTimer = setInterval(autoSliding, settings.waitTime);
+                            autoSlideTimer = setInterval(autoSliding, parseInt(settings.waitTime,10));
                         }
 
                         return;
@@ -211,14 +211,14 @@
                         if(settings.opacity == 1) {
                             $(slide).eq(currentSlide-1).animate({
                                 opacity: 0
-                            }, settings.animationDuration, settings.slideEasing);
+                            }, parseInt(settings.animationDuration,10), settings.slideEasing);
 
                             $(slide).eq(currentSlide).animate({
                                 opacity: 1
-                            }, settings.animationDuration, settings.slideEasing);
+                            }, parseInt(settings.animationDuration,10), settings.slideEasing);
                         } else {
-                            $(slide).eq(currentSlide-1).fadeOut(settings.animationDuration);
-                            $(slide).eq(currentSlide).fadeIn(settings.animationDuration);
+                            $(slide).eq(currentSlide-1).fadeOut(parseInt(settings.animationDuration,10));
+                            $(slide).eq(currentSlide).fadeIn(parseInt(settings.animationDuration,10));
                         }
 
                         //increment the counter
@@ -236,7 +236,7 @@
                     }
 
                     if (settings.autoPhader === true) {
-                        autoSlideTimer = setInterval(autoSliding, settings.waitTime);
+                        autoSlideTimer = setInterval(autoSliding, parseInt(settings.waitTime,10));
                     }
                 });
 
