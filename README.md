@@ -109,7 +109,7 @@ Here are all the possible settings, and their defaults
 ```javascript
 $(window).load(function() {
     $('#phader').darthPhader({
-        animationDuration' : 2000,     //milliseconds
+        'animationDuration' : 2000,     //milliseconds
         'slideEasing' : 'swing',        //default options are swing or linear
         'includeNav' : true,            //do you want to output next/prev buttons?
         'navId' : 'phaderNav',          //create a blank div with an id
