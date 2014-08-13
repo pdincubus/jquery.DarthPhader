@@ -62,12 +62,12 @@
 
                      if ( settings.navStyle == 'nextPrev' ) {
                          //create left and right nav
-                         navHtml = '<span id="' + settings.navPrevId + '">&lt;</span>';
+                         navHtml = '<span id="' + settings.navPrevId + '">◄</span>';
                          if ( settings.navIncludeNumSlides === true ) {
                              //do we want to know what slide we're on?
                              navHtml = navHtml + '<span class="' + settings.navNumClass + '">1 of ' + slidings + '</span>';
                          }
-                         navHtml = navHtml + '<span id="' + settings.navNextId + '">&gt;</span>';
+                         navHtml = navHtml + '<span id="' + settings.navNextId + '">►</span>';
 
                          //disable previous to start with, I mean we're already at the beginning.
                          if(settings.loopButtons === false) {
