@@ -5,3 +5,5 @@ node_modules
 .sass-cache
 
 scss-lint-report.xml
+
+src/js/script.js
