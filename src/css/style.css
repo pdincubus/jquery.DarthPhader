@@ -1,0 +1,50 @@
+#darthphader {
+  font-family: "Helvetica Neue", Helvetica, Arial, Verdana, Tahoma, Sans-serif;
+  font-size: 22px;
+  height: 534px;
+  position: relative;
+  width: 800px; }
+  #darthphader > ul {
+    height: 534px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 800px; }
+    #darthphader > ul > li {
+      background-color: #555;
+      bottom: 0;
+      color: #fff;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0; }
+      #darthphader > ul > li.ladybird {
+        background: url("../img/ladybird.jpg") 0 0 no-repeat;
+        background-size: cover; }
+      #darthphader > ul > li.clover {
+        background: url("../img/clover.jpg") 0 0 no-repeat;
+        background-size: cover; }
+    #darthphader > ul h1 {
+      font-size: 42px;
+      font-weight: normal;
+      margin: 40px 40px 80px; }
+    #darthphader > ul p {
+      margin: 0 40px; }
+    #darthphader > ul img {
+      max-width: 100%;
+      vertical-align: bottom; }
+  #darthphader > nav {
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    bottom: 40px;
+    left: 50%;
+    position: absolute; }
+    #darthphader > nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative; }
