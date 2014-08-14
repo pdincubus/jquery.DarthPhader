@@ -1,7 +1,7 @@
 $(window).load(function() {
     $('#darthphader').darthphader({
-        'animationDuration' : 500,
-        'waitTime' : 2000,
+        'animationDuration' : 1000,
+        'waitTime' : 3000,
         'autoPhader' : true,
         'crossfade' : true,
         'slide' : '.slide',
