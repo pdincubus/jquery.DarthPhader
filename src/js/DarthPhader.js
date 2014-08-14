@@ -63,7 +63,7 @@
             //    Autophade
             //------------------------------------------------------------------------------
             if ( this.options.autoPhader === true ) {
-                var autoPhaderTimer = setInterval(this.autoPhade(), parseInt(this.options.waitTime,10));
+                var autoPhaderTimer = setInterval( function() { that.autoPhade() }, parseInt(this.options.waitTime,10));
             }
 
             //------------------------------------------------------------------------------
@@ -73,7 +73,6 @@
                 'slide.next': function(e) {
                     //interrupt the timer for auto if it's going
                     if (that.options.autoPhader === true) {
-                        console.log('clearing timer');
                         clearInterval(autoPhaderTimer);
                     }
 
@@ -87,15 +86,13 @@
 
                     //set timer going again
                     if (that.options.autoPhader === true) {
-                        console.log('setting timer going');
-                        autoPhaderTimer = setInterval(that.autoPhade(), parseInt(that.options.waitTime,10));
+                        autoPhaderTimer = setInterval( function() { that.autoPhade() }, parseInt(that.options.waitTime,10));
                     }
                 },
 
                 'slide.prev': function(e) {
                     //interrupt the timer for auto if it's going
                     if (that.options.autoPhader === true) {
-                        console.log('clearing timer');
                         clearInterval(autoPhaderTimer);
                     }
 
@@ -109,15 +106,13 @@
 
                     //set timer going again
                     if (that.options.autoPhader === true) {
-                        console.log('setting timer going');
-                        autoPhaderTimer = setInterval(that.autoPhade(), parseInt(that.options.waitTime,10));
+                        autoPhaderTimer = setInterval( function() { that.autoPhade() }, parseInt(that.options.waitTime,10));
                     }
                 },
 
                 'slide.specific': function(e, slideNum) {
                     //interrupt the timer for auto if it's going
                     if (that.options.autoPhader === true) {
-                        console.log('clearing timer');
                         clearInterval(autoPhaderTimer);
                     }
 
@@ -125,8 +120,7 @@
 
                     //set timer going again
                     if (that.options.autoPhader === true) {
-                        console.log('setting timer going');
-                        autoPhaderTimer = setInterval(that.autoPhade(), parseInt(that.options.waitTime,10));
+                        autoPhaderTimer = setInterval( function() { that.autoPhade() }, parseInt(that.options.waitTime,10));
                     }
                 }
             });
@@ -250,8 +244,8 @@
         //    Let things phade on their own
         //------------------------------------------------------------------------------
         autoPhade: function() {
-            console.log('autoPhade timeout triggered');
-            //this.$element.trigger('slide.next');
+            var that = this;
+            that.$element.trigger('slide.next');
         }
     };
 
