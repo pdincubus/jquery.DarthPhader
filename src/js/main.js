@@ -1,3 +1,5 @@
+//to call the jqery plugin
+/*
 $(window).load(function() {
     $('#darthphader').darthphader({
         'animationDuration' : 1000,
@@ -13,4 +15,7 @@ $(window).load(function() {
         'navStyle' : 'nextPrev'
     });
 });
+*/
 
+//to create and call a vanilla js
+var phader1 = phaderModule.phader( $('#darthphader'), {'autoPhader' : false} );

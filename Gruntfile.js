@@ -94,7 +94,8 @@ module.exports = function(grunt) {
 
             main: {
                 src: ['src/js/jquery-2.1.1.min.js',
-                'src/js/DarthPhader.js',
+	            'src/js/DarthPhader.js',
+                'src/js/DarthPhader2.js',
                 'src/js/main.js'],
                 dest: 'src/js/script.js'
             }
@@ -165,7 +166,7 @@ module.exports = function(grunt) {
             },
 
             js: {
-                files: ['src/js/main.js', 'src/js/DarthPhader.js'],
+                files: ['src/js/main.js', 'src/js/DarthPhader.js', 'src/js/DarthPhader2.js'],
                 tasks: ['lintjs','combine','uglifyjs','files']
             },
 

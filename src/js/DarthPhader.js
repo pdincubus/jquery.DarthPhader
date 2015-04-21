@@ -44,10 +44,10 @@
             //------------------------------------------------------------------------------
             if ( this.options.showNav === true ) {
                 if ( this.options.navStyle == 'nextPrev' ) {
-                    this.$element.append('<nav>
-                        <button class="' + this.options.prevClass.replace('.','') + '">Previous</button>
-                        <button class="' + this.options.nextClass.replace('.','') + '">Next</button>
-                    </nav>');
+                    this.$element.append('<nav>' +
+                        '<button class="' + this.options.prevClass.replace('.','') + '">Previous</button>' +
+                        '<button class="' + this.options.nextClass.replace('.','') + '">Next</button>' +
+                        '</nav>');
                 } else {
                     var buttonHtml = '';
 
