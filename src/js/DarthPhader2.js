@@ -27,10 +27,6 @@ var phaderModule = (function() {
 
 	function Phader( element, options ) {
 
-		console.log('initPhader', this);
-		console.log('initPhader element', element);
-		console.log('initPhader options', options);
-
 		$element = element;
 		//console.log('animationDuration: ', animationDuration);
 		animationDuration = options.animationDuration || animationDuration;
@@ -53,9 +49,6 @@ var phaderModule = (function() {
 		//------------------------------------------------------------------------------
 
 		function setup() {
-
-			console.log('setup: ', this);
-			console.log('setup: container: ', container);
 
 			//------------------------------------------------------------------------------
 			//    show first slide, hide the rest
@@ -286,8 +279,6 @@ var phaderModule = (function() {
 
 	return {
 		phader: function(elem, options){
-			console.log( 'Phader: elem: ', elem );
-			console.log( 'Phader: options: ', options );
 			return new Phader( elem, options );
 		}
 	}
